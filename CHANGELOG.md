@@ -14,9 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added support for float targets in `nDCG` metric ([#437](https://github.com/PyTorchLightning/metrics/pull/437))
 
+- Added `average` argument to `AveragePrecision` metric for reducing multilabel and multiclass problems
 
 ### Changed
 
+- `AveragePrecision` will now as default output the `macro` average for multilabel and multiclass problems 
 
 ### Deprecated
 
