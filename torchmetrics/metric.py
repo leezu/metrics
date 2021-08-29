@@ -415,12 +415,8 @@ class Metric(nn.Module, ABC):
         """Overwrite _apply function such that we can also move metric states to the correct device when `.to`,
         `.cuda`, etc methods are called."""
         this = super()._apply(fn)
-        # Also apply fn to metric states and defaults
-        for key, value in this._defaults.items():
-            if isinstance(value, Tensor):
-                this._defaults[key] = fn(value)
-            elif isinstance(value, Sequence):
-                this._defaults[key] = [fn(v) for v in value]
+        # Also apply fn to metric states
+        for key in this._defaults.keys():
 
             current_val = getattr(this, key)
             if isinstance(current_val, Tensor):
